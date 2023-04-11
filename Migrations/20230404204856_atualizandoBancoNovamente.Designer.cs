@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DesafioDev2.Migrations
 {
     [DbContext(typeof(SistemaTarefasDBContex))]
-    [Migration("20230331191004_InitialDB")]
-    partial class InitialDB
+    [Migration("20230404204856_atualizandoBancoNovamente")]
+    partial class atualizandoBancoNovamente
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -32,11 +32,11 @@ namespace DesafioDev2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"), 1L, 1);
 
-                    b.Property<int?>("CPF")
-                        .HasColumnType("int");
+                    b.Property<bool>("CPF")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("DataNas")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DataNas")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
                         .IsRequired()

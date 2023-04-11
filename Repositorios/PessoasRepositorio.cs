@@ -18,6 +18,11 @@ namespace DesafioDev2.Repositorios
             return await _dbContext.Pessoas.FirstOrDefaultAsync(x => x.Codigo == codigo);
         }
 
+        public Task<List<PessoasModel>> BuscarTodasPessoasUF(string uf)
+        {
+            return Task.FromResult(_dbContext.Pessoas.ToList());
+        }
+
         public async Task<List<PessoasModel>> BuscarTodasPessoas()
         {
             return await _dbContext.Pessoas.ToListAsync();

@@ -30,11 +30,11 @@ namespace DesafioDev2.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Codigo"), 1L, 1);
 
-                    b.Property<int?>("CPF")
-                        .HasColumnType("int");
+                    b.Property<bool>("CPF")
+                        .HasColumnType("bit");
 
-                    b.Property<string>("DataNas")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<DateTime>("DataNas")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Nome")
                         .IsRequired()

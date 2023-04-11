@@ -1,9 +1,8 @@
 ﻿using DesafioDev2.Models;
-using DesafioDev2.Repositorios;
 using DesafioDev2.Repositorios.Interfaces;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Cryptography.X509Certificates;
+using System.Data;
 
 namespace DesafioDev2.Controllers
 {
@@ -18,7 +17,7 @@ namespace DesafioDev2.Controllers
             _pessoasRepositorio = pessoasRepositorio;
         }
 
-        [HttpGet]
+        [HttpGet("TodasPessoas")]
         public async Task<ActionResult<List<PessoasModel>>> BuscarTodasPessoas()
         {
            
@@ -41,5 +40,26 @@ namespace DesafioDev2.Controllers
             PessoasModel pessoas = await _pessoasRepositorio.Adicionar(pessoasModel);
             return Ok(pessoasModel);
         }
+
+
+
+        [HttpPut("(codigo)")]
+        public async Task<ActionResult<PessoasModel>> Atualizar([FromBody] PessoasModel pessoasModel, int codigo)
+        {
+            pessoasModel.Codigo = codigo;
+            PessoasModel usuario = await _pessoasRepositorio.Atualizar(pessoasModel, codigo);
+            return Ok(pessoasModel);
+        }
+
+
+        [HttpDelete("(codigo)")]
+
+        public async Task<ActionResult<PessoasModel>> Apagar(int codigo)
+        {
+            bool apagado = await _pessoasRepositorio.Apagar(codigo);
+            return Ok(apagado);
+        }
+
+
     }
 }
